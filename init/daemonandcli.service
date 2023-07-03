@@ -1,0 +1,21 @@
+[Unit]
+Description=Daemon And Cli Demo service
+Documentation=http:\\bakiatmaca.com
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=one
+Group=one
+WorkingDirectory=/home/one/research/golang/daemonandcli
+ExecStart=serverdemo
+
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+TimeoutStopSec=9
+Restart=on-failure
+SyslogIdentifier=daemonandcli
+
+[Install]
+WantedBy=multi-user.target
