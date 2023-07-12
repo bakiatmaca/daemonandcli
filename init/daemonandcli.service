@@ -8,8 +8,8 @@ Wants=network-online.target
 Type=simple
 User=one
 Group=one
-WorkingDirectory=/home/one/research/golang/daemonandcli
-ExecStart=serverdemo
+WorkingDirectory=/home/one/research/bpostcode/daemonandcli
+ExecStart=server
 
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT

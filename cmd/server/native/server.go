@@ -24,11 +24,12 @@ import (
 	"strings"
 	"syscall"
 
+	"bakiatmaca.com/poc/daemonandcli/cmd/server/dummy"
 	usock "bakiatmaca.com/poc/daemonandcli/internal"
 )
 
 var (
-	service *FakeService
+	service *dummy.FakeService
 )
 
 func main() {
@@ -47,7 +48,7 @@ func main() {
 	}
 
 	//create a fake service
-	service = NewFakeService()
+	service = dummy.NewFakeService()
 
 	go func() {
 		for {
@@ -84,7 +85,7 @@ func hook(ctx context.Context, sendChan chan string, recvChan chan string) {
 						if cmd == "Get-Capacity" {
 							result = service.GetCapacity()
 						} else if cmd == "Get-Uptime" {
-							result = FormatDuration(service.GetUptime())
+							result = dummy.FormatDuration(service.GetUptime())
 						} else if cmd == "Get-ConStr" {
 							result = service.ConnectionString
 						} else if strings.HasPrefix(cmd, "setconstr=") {
